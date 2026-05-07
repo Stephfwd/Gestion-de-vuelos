@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/database');
 
-const User = sequelize.define('User', {
+const Airport = sequelize.define('Airport', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -11,33 +11,22 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      isEmail: true
-    }
-  },
-  password: {
+  ciudad: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  telefono: {
+  pais: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: false
   },
-  rol_id: {
-    type: DataTypes.INTEGER,
+  codigo: {
+    type: DataTypes.STRING(10),
     allowNull: false,
-    references: {
-      model: 'roles',
-      key: 'id'
-    }
+    unique: true
   }
 }, {
-  tableName: 'usuarios',
+  tableName: 'aeropuertos',
   timestamps: true
 });
 
-module.exports = User;
+module.exports = Airport;
