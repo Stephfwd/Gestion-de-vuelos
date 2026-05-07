@@ -13,6 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rutas
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/airports', require('./routes/airportRoutes'));
+app.use('/api/flights', require('./routes/flightRoutes'));
+app.use('/api/bookings', require('./routes/bookingRoutes'));
+app.use('/api/payments', require('./routes/paymentRoutes'));
 
 // Ruta base
 app.get('/', (req, res) => {
