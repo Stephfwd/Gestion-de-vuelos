@@ -1,20 +1,19 @@
-const { Airport } = require('../models');
+const airportService = require('../services/airportService');
 
 exports.getAllAirports = async (req, res) => {
   try {
-    const airports = await Airport.findAll();
+    const airports = await airportService.getAll();
     res.json(airports);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener aeropuertos', error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
 exports.getAirportById = async (req, res) => {
   try {
-    const airport = await Airport.findByPk(req.params.id);
-    if (!airport) return res.status(404).json({ message: 'Aeropuerto no encontrado' });
+    const airport = await airportService.getById(req.params.id);
     res.json(airport);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener aeropuerto', error: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
