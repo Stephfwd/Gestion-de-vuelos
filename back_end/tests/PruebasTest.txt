@@ -1,0 +1,57 @@
+    Funcionamientos de las prubas test
+
+
+Prueba de Conectividad Base: Valida que el servidor esté activo
+
+    1/ La primera prueba se hizo en validar que el servidor estuviera activo y los servicios
+    estuvieran funcionando correctamente
+    
+    2/ La segunda prueba se hizo en validar que el login funcionara correctamente y asi validar los
+    siguientes datos : 
+
+        * Email correcto y contraseña correcta
+        * Email correcto y contraseña incorrecta
+        * Email incorrecto y contraseña correcta
+        * Email incorrecto y contraseña incorrecta
+        * Email correcto y contraseña correcta pero con rol de usuario
+        * Email correcto y contraseña correcta pero con rol de administrador    
+
+    3/ La tercera prueba se hizo en validar que la ruta /api/airports funcionara correctamente y asi validar los
+    siguientes datos : 
+
+        * Listar todos los aeropuertos
+        * Buscar un aeropuerto por ID
+        * Buscar un aeropuerto por ID que no existe    
+    
+    4/ La cuarta prueba se hizo en validar que la ruta /api/flights funcionara correctamente y asi validar los
+    siguientes datos : 
+
+        * Listar todos los vuelos
+        * Buscar un vuelo por ID
+        * Buscar un vuelo por ID que no existe    
+        * Crear un vuelo
+        * Crear un vuelo con datos incorrectos
+        * Crear un vuelo con datos correctos pero con rol de usuario
+        * Crear un vuelo con datos correctos pero con rol de administrador   
+
+    5/ La quinta prueba se hizo en validar que la ruta /api/bookings funcionara correctamente y asi validar los
+    siguientes datos : 
+
+        * Crear una reserva
+        * Crear una reserva con datos incorrectos
+        * Crear una reserva con datos correctos pero con rol de usuario
+        * Crear una reserva con datos correctos pero con rol de administrador
+
+    6/ La sexta prueba se hizo en validar que la ruta /api/payments funcionara correctamente y asi validar los
+    siguientes datos : 
+
+        * Procesar un pago
+        * Procesar un pago con datos incorrectos
+        * Procesar un pago con datos correctos pero con rol de usuario
+        * Procesar un pago con datos correctos pero con rol de administrador        
+
+    7/ La septima prueba se hizo en validar payments 
+
+        * procesa el pago correctamente y actualiza la reserva a "Confirmada"
+        * obtiene el comprobante de pago por ID de reserva
+        * impide pagar una reserva que no existe en el sistema  

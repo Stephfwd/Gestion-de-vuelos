@@ -26,9 +26,9 @@ describe('Airport API Tests', () => {
     it('debería obtener la lista de todos los aeropuertos', async () => {
       const res = await request(app).get('/api/airports');
       
-      // Valida que el servidor responda con éxito (200)
+      // Valida que el servidor responda con éxito 
       expect(res.statusCode).toEqual(200);
-      // Valida que la respuesta sea un Array (lista)
+      // Valida que la respuesta sea un Array 
       expect(Array.isArray(res.body)).toBe(true);
       // Valida que la lista no esté vacía
       expect(res.body.length).toBeGreaterThan(0);
