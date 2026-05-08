@@ -1,0 +1,19 @@
+{
+  "name": "gestion-vuelos-root",
+  "version": "1.0.0",
+  "description": "Root project for Flight Management System",
+  "scripts": {
+    "start:back": "npm start --prefix back_end",
+    "start:front": "npm run dev --prefix front_end/SistemaVuelos",
+    "start": "npm run dev",
+    "dev": "concurrently \"npm run start:back\" \"npm run start:front\"",
+    "install:all": "npm install --prefix back_end && npm install --prefix front_end/SistemaVuelos",
+    "migrate": "npm run migrate --prefix back_end",
+    "seed": "npm run seed --prefix back_end",
+    "test": "npm test --prefix back_end"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "jest": "^30.4.1"
+  }
+}

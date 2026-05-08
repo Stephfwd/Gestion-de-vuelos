@@ -1,0 +1,66 @@
+a========================================================================
+DOCUMENTACIÓN DE PRUEBAS AUTOMATIZADAS (JEST & SUPERTEST)
+PROYECTO: GESTIÓN DE VUELOS
+========================================================================
+
+Este documento explica los 7 tests implementados en el backend para validar
+la seguridad, la integridad de los datos y el funcionamiento de la API.
+
+------------------------------------------------------------------------
+ARCHIVO 1: tests/api.test.js
+------------------------------------------------------------------------
+1. Prueba de Conectividad Base
+   - Qué valida: Que el servidor Express esté configurado correctamente.
+   - Acción: Realiza una petición GET a la ruta raíz (/).
+   - Resultado esperado: HTTP 200 y un mensaje JSON de bienvenida.
+
+------------------------------------------------------------------------
+ARCHIVO 2: tests/login.test.js
+------------------------------------------------------------------------
+
+SECCIÓN A: Autenticación (POST /api/auth/login)
+
+2. Login con Credenciales Válidas
+   - Qué valida: Que un usuario registrado pueda acceder al sistema.
+   - Acción: Envía email y contraseña correctos.
+   - Resultado esperado: HTTP 200, un Token JWT generado y los datos del usuario.
+
+3. Fallo por Contraseña Incorrecta
+   - Qué valida: La seguridad del sistema ante contraseñas erróneas.
+   - Acción: Envía un email válido pero una contraseña al azar.
+   - Resultado esperado: HTTP 401 (Unauthorized) y el mensaje "Contraseña incorrecta".
+
+4. Fallo por Usuario Inexistente
+   - Qué valida: Que el sistema no permita el acceso a correos no registrados.
+   - Acción: Envía un email que no está en la base de datos.
+   - Resultado esperado: HTTP 401 (Unauthorized) y el mensaje "Usuario no encontrado".
+
+5. Fallo por Campos Obligatorios (Validación)
+   - Qué valida: Que los middlewares de validación estén funcionando.
+   - Acción: Envía el email pero omite la contraseña.
+   - Resultado esperado: HTTP 400 (Bad Request) y un array de errores detallando qué falta.
+
+SECCIÓN B: Registro (POST /api/auth/register)
+
+6. Fallo por Email Duplicado
+   - Qué valida: La integridad de la base de datos (Unique constraint).
+   - Acción: Intenta registrar un usuario con un email que ya existe.
+   - Resultado esperado: HTTP 400 (Bad Request) y el mensaje "El correo ya está registrado".
+
+SECCIÓN C: Seguridad de Roles (RBAC)
+
+7. Prohibir Creación de Vuelo a Usuario Normal
+   - Qué valida: El control de acceso basado en roles (RBAC).
+   - Acción: Inicia sesión como un "Usuario" normal, obtiene su token e intenta 
+              crear un nuevo vuelo (una acción que solo el "Admin" puede hacer).
+   - Resultado esperado: HTTP 403 (Forbidden). El sistema identifica que el token 
+                         es válido pero el usuario no tiene los permisos necesarios.
+
+------------------------------------------------------------------------
+RESUMEN DE CÓDIGOS HTTP UTILIZADOS:
+------------------------------------------------------------------------
+- 200 (OK): Todo salió bien.
+- 400 (Bad Request): Error del cliente (datos mal enviados o duplicados).
+- 401 (Unauthorized): Problema de identidad (quién eres).
+- 403 (Forbidden): Problema de permisos (qué puedes hacer).
+========================================================================
